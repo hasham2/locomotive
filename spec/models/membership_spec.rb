@@ -49,6 +49,7 @@ describe Membership do
 
     it 'should tell membership has to be saved' do
       @membership.email = 'bart@simpson.net'
+      @membership.expects(:save)
       @membership.process!.should == :save_it
     end
   end
