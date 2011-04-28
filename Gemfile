@@ -2,7 +2,7 @@ source :rubygems
 
 # add in all the runtime dependencies
 
-gem 'rails', '>= 3.0.5'
+gem 'rails', '>= 3.0.7'
 
 gem 'warden'
 gem 'devise', '= 1.1.3'
