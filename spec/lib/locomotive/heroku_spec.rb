@@ -18,9 +18,9 @@ describe 'Heroku support' do
     end
 
     it 'does not add instance methods to Site' do
-      Site.instance_methods.include?('add_heroku_domains').should be_false
-      Site.instance_methods.include?('remove_heroku_domains').should be_false
-      Site.methods.include?('create_first_one_with_heroku').should be_false
+      Site.new.should_not respond_to(:add_heroku_domains)
+      Site.new.should_not respond_to(:remove_heroku_domains)
+      Site.should_not respond_to(:create_first_one_with_heroku)
     end
 
   end
@@ -42,8 +42,8 @@ describe 'Heroku support' do
     end
 
     it 'does not add methods to Site' do
-      Site.instance_methods.include?('add_heroku_domains').should be_false
-      Site.instance_methods.include?('remove_heroku_domains').should be_false
+      Site.new.should_not respond_to(:add_heroku_domains)
+      Site.new.should_not respond_to(:remove_heroku_domains)
     end
 
   end
@@ -58,7 +58,7 @@ describe 'Heroku support' do
 
     it 'adds a method to automatically create a site with Heroku settings' do
       configure_locomotive_with_heroku
-      Site.methods.include?('create_first_one_with_heroku').should be_true
+      Site.should respond_to(:create_first_one_with_heroku)
     end
 
     it 'tells heroku is enabled when forcing it' do
