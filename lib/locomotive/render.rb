@@ -28,10 +28,7 @@ module Locomotive
       end
 
       def locomotive_page
-        path = (params[:path] || request.fullpath).clone # TODO: params[:path] is more consistent
-        path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '')
-        path.gsub!(/^\//, '')
-        path = 'index' if path.blank?
+        path = sanitized_path
 
         if path != 'index'
           dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
@@ -106,6 +103,15 @@ module Locomotive
 
       def page_status
         @page == not_found_page ? :not_found : :ok
+      end
+
+      # Returns a path cleaned of all unacceptable characters,
+      # returns index if the current path is blank
+      def sanitized_path
+        path = (params[:path] || request.fullpath).clone # TODO: params[:path] is more consistent
+        path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '')
+        path.gsub!(/^\//, '')
+        path.presence || 'index'
       end
 
     end
