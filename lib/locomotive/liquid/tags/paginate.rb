@@ -42,7 +42,7 @@ module Locomotive
 
             page_count, current_page = pagination['total_pages'], pagination['current_page']
 
-            path = context.registers[:page].fullpath
+            path = context.registers[:controller].request.fullpath
 
             pagination['previous'] = link(I18n.t('pagination.previous'), current_page - 1, path) if pagination['previous_page']
             pagination['next'] = link(I18n.t('pagination.next'), current_page + 1, path) if pagination['next_page']
@@ -87,9 +87,19 @@ module Locomotive
           { 'title' => title, 'is_link' => false, 'hellip_break' => title == '&hellip;' }
         end
 
-        def link(title, page, path)
+         def link(title, page, path)
           { 'title' => title, 'url' => path + "?page=#{page}", 'is_link' => true}
-        end
+          regex = /((\?|\&)page=\d+)/
+          if path.match(regex)
+            path = path.gsub(regex, "\\2page=#{page}")
+          elsif path.match(/\?/)
+            path = "#{path}&page=#{page}"
+          else
+            path = "#{path}?page=#{page}"
+          end
+          { 'title' => title, 'url' => path, 'is_link' => true}
+         end
+
       end
 
       ::Liquid::Template.register_tag('paginate', Paginate)

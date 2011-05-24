@@ -19,13 +19,16 @@ describe Locomotive::Liquid::Tags::Paginate do
 
   it 'should paginate the collection' do
     template = Liquid::Template.parse(default_template)
-    text = template.render!(liquid_context)
+    controller = ApplicationController.new
+    request    = stub(:fullpath => 'path')
+    controller.stubs(:request).times(2).returns(request)
+    text = template.render!(liquid_context(:controller => controller))
 
     text.should match /!Ruby on Rails!/
     text.should match /!jQuery!/
     text.should_not match /!mongodb!/
 
-    text = template.render!(liquid_context(:page => 2))
+    text = template.render!(liquid_context(:page => 2, :controller => controller))
 
     text.should_not match /!jQuery!/
     text.should match /!mongodb!/
@@ -54,7 +57,8 @@ describe Locomotive::Liquid::Tags::Paginate do
       'projects'      => options.has_key?(:collection) ? options[:collection] : PaginatedCollection.new(['Ruby on Rails', 'jQuery', 'mongodb', 'Liquid', 'sqlite3']),
       'current_page'  => options[:page] || 1
     }, {
-      :page           => Factory.build(:page)
+      :page           => Factory.build(:page),
+      :controller     => options.has_key?(:controller) ? options[:controller] : nil
     }, true)
   end
 
