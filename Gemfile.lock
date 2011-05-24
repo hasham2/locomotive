@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: f1d182ea33fe08cbc187df90f12013814ae59da8
+  revision: 7dd9512a874f89b8037d7320fe7988c222f439e1
   specs:
     mocha (0.9.12.20110213002255)
 
@@ -51,7 +51,7 @@ GEM
       activesupport (= 3.0.7)
     activesupport (3.0.7)
     archive-tar-minitar (0.5.2)
-    arel (2.0.9)
+    arel (2.0.10)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     bcrypt-ruby (2.1.4)
@@ -87,7 +87,7 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
-    custom_fields (1.0.0.beta.11)
+    custom_fields (1.0.0.beta.12)
       activesupport (>= 3.0.7)
       locomotive_carrierwave
       mongoid (~> 2.0.1)
@@ -133,7 +133,7 @@ GEM
     heroku (1.19.1)
       activesupport (>= 2.1.0)
       launchy (~> 0.3.2)
-      rest-client (>= 1.4.0, < 1.7.0)
+      rest-client (< 1.7.0, >= 1.4.0)
     highline (1.6.2)
     httparty (0.7.7)
       crack (= 0.1.8)
@@ -275,7 +275,7 @@ DEPENDENCIES
   capybara
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields (= 1.0.0.beta.11)
+  custom_fields (= 1.0.0.beta.12)
   database_cleaner
   delayed_job (= 2.1.4)
   delayed_job_mongoid (= 1.0.2)
