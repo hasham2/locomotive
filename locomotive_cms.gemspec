@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency "bushido"
   s.add_dependency "heroku", "1.19.1"
 
-  s.add_dependency "rmagick", "2.12.2"
+  s.add_dependency "rmagick", "2.13.2"
   s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta3"
 
   s.add_dependency "custom_fields", "1.0.0.beta.12"
